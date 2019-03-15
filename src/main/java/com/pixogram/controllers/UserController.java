@@ -43,17 +43,6 @@ public class UserController
     }
 	
 	/**
-	 * Gets all of the mentors from the user table
-	 * @return
-	 */
-	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping("/user/mentors")
-	public List<String> getMentorsFromUserTable()
-	{
-		return userRepository.getMentorName();
-	}
-	
-	/**
 	 * Returns a specific user by searching for their Id
 	 * @param userId
 	 * @return

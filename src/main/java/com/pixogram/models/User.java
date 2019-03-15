@@ -63,10 +63,6 @@ public class User
     @Column
     @Size(max = 1)
     private String userBlocked;
-    
-    @Column
-    @Size(max = 1)
-    private String emailConfirmed;
  
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", 
@@ -84,7 +80,6 @@ public class User
         this.password = password;
         this.contactNum = contactNum;
         this.userBlocked = "N";
-        this.emailConfirmed = "N";
     }
  
     public Integer getId() 
@@ -185,16 +180,5 @@ public class User
     public String getUserBlocked()
     {
     	return this.userBlocked;
-    }
-    
-    public User setEmailConfirmed(String emailConfirmed)
-    {
-    	this.emailConfirmed = emailConfirmed;
-    	return this;
-    }
-    
-    public String getEmailConfirmed()
-    {
-    	return this.emailConfirmed;
     }
 }

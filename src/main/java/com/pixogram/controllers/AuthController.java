@@ -148,11 +148,6 @@ public class AuthController
 	    			roles.add(adminRole);
 	    			break;
 	    			
-	    		case "mentor":
-	    			Role mentorRole = roleRepository.findByName(RoleName.ROLE_MENTOR)
-	                .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not found."));
-	    			roles.add(mentorRole);
-	    			break;
 	    			
 	    		default:
 	        		Role userRole = roleRepository.findByName(RoleName.ROLE_USER)

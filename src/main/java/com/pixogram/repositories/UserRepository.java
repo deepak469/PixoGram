@@ -22,11 +22,6 @@ public interface UserRepository extends JpaRepository<User, Integer>
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
     
-    @Query(value = "SELECT name FROM users u INNER JOIN user_roles ur ON u.id = ur.user_id WHERE ur.role_id = 2",
-    	nativeQuery = true
-    )
-    public List<String> getMentorName();
-    
     @Query(value = "SELECT * from users WHERE user_blocked = 'N'",
     		nativeQuery = true
     )
