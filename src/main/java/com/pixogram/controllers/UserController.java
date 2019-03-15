@@ -119,4 +119,17 @@ public class UserController
 	{
         return userRepository.getUnblockedUsers();
     }
+	
+	/**
+	 * Returns a boolean based on whether a username exists or not
+	 * True = exists, False = doesn't exist
+	 * 
+	 * @param username
+	 * @return
+	 */
+	@GetMapping("/user/checkusername/")
+	public boolean cheeckUserNameInUse(@RequestParam(value = "username") String username)
+	{
+		return userRepository.existsByUsername(username);
+	}
 }
