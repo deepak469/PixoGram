@@ -32,14 +32,22 @@ public class ImageMetadata
     @Column(name = "size")
     private String size;
     
+    @Column(name="caption")
+    private String caption;
+    
+    @Column(name="description")
+    private String description;
+    
     public ImageMetadata() {}
  
-    public ImageMetadata(Integer userId, String filename, String filetype, String size) 
+    public ImageMetadata(Integer userId, String filename, String filetype, String size, String caption, String description) 
     {
         this.userId = userId;
         this.filename = filename;
         this.filetype = filetype;
         this.size = size;
+        this.caption = caption;
+        this.description = description;
     }
     
     public void setUserId(Integer inputUserId)
@@ -80,5 +88,25 @@ public class ImageMetadata
     public String getSize()
     {
     	return this.size;
+    }
+    
+    public void setCaption(String inputCaption)
+    {
+    	this.caption = inputCaption;
+    }
+    
+    public String getCaption()
+    {
+    	return this.caption;
+    }
+    
+    public void setDescription(String inputDescription)
+    {
+    	this.description = inputDescription;
+    }
+    
+    public String getDescription()
+    {
+    	return this.description;
     }
 }
