@@ -47,9 +47,8 @@ public class UserController
 	 * @param userId
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable(value = "id") Integer userId) 
+    @GetMapping("/user/")
+    public User getUserById(@RequestParam(value = "id") Integer userId) 
     {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
@@ -128,8 +127,11 @@ public class UserController
 	 * @return
 	 */
 	@GetMapping("/user/checkusername/")
-	public boolean cheeckUserNameInUse(@RequestParam(value = "username") String username)
+	public boolean checkUserNameInUse(@RequestParam(value = "username") String username)
 	{
 		return userRepository.existsByUsername(username);
 	}
+	
+//	@GetMapping("/user/profilepic")
+//	public String getProfilePicUri(@RequestParam)
 }

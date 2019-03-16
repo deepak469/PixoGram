@@ -63,6 +63,9 @@ public class User
     @Column
     @Size(max = 1)
     private String userBlocked;
+    
+    @Column
+    private String profilePicUri;
  
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", 
@@ -80,6 +83,7 @@ public class User
         this.password = password;
         this.contactNum = contactNum;
         this.userBlocked = "N";
+        this.profilePicUri = "default-profile-pic.png";
     }
  
     public Integer getId() 
@@ -180,5 +184,15 @@ public class User
     public String getUserBlocked()
     {
     	return this.userBlocked;
+    }
+    
+    public void setProfilePicUri(String inputProfilePicUri)
+    {
+    	this.profilePicUri = inputProfilePicUri;
+    }
+    
+    public String getProfilePicUri()
+    {
+    	return this.profilePicUri;
     }
 }
