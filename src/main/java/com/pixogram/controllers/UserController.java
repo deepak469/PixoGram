@@ -132,6 +132,9 @@ public class UserController
 		return userRepository.existsByUsername(username);
 	}
 	
-//	@GetMapping("/user/profilepic")
-//	public String getProfilePicUri(@RequestParam)
+	@GetMapping("/user/namesearch/")
+	public List<User> getUsernameFromName(@RequestParam(value = "name") String name)
+	{
+		return userRepository.getUsersByName(name);
+	}
 }

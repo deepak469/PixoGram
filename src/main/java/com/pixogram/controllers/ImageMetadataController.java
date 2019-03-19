@@ -36,16 +36,23 @@ public class ImageMetadataController
     }
 	
 	/**
-	 * Returns a specific user by searching for their Id
+	 * Returns a specific image by searching for their Id
 	 * @param userId
 	 * @return
 	 */
     @GetMapping("/imagemetadata/")
-    public ImageMetadata getUserById(@RequestParam(value = "id") Integer userId) 
+    public ImageMetadata getImageById(@RequestParam(value = "id") Integer userId) 
     {
         return imageMetadataRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("ImageMetadata", "id", userId));
     }
+    
+	
+	@GetMapping("/imagemetadata/{userId}")
+	public List<ImageMetadata> getTechByTechName(@RequestParam(value = "userId") Integer userId)
+	{
+		return imageMetadataRepository.findByUserId(userId);
+	}
     
 	@PostMapping("/imagemetadata")
     public ImageMetadata createMentor(@Valid @RequestBody ImageMetadata imageMetadata) 

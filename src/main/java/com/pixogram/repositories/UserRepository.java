@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.pixogram.models.User;
@@ -31,4 +32,8 @@ public interface UserRepository extends JpaRepository<User, Integer>
     		nativeQuery = true
     )
     public List<User> getBlockedUsers();
+    
+    @Query(value = "SELECT * from users WHERE name LIKE CONCAT('%',:name,'%')",
+    		nativeQuery = true)
+    public List<User> getUsersByName(@Param("name") String name);
 }
