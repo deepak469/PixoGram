@@ -17,4 +17,5 @@ import com.pixogram.models.ImageMetadata;
 public interface ImageMetadataRepository extends JpaRepository<ImageMetadata, Integer>
 {	
 	public List<ImageMetadata> findByUserId(Integer userId);
+	public ImageMetadata findByFilename(String filename);
 }

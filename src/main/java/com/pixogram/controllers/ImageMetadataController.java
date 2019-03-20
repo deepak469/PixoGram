@@ -47,16 +47,42 @@ public class ImageMetadataController
                 .orElseThrow(() -> new ResourceNotFoundException("ImageMetadata", "id", userId));
     }
     
-	
+	/**
+	 * Find all images relating to a user's id
+	 * @param userId
+	 * @return
+	 */
 	@GetMapping("/imagemetadata/{userId}")
 	public List<ImageMetadata> getTechByTechName(@RequestParam(value = "userId") Integer userId)
 	{
 		return imageMetadataRepository.findByUserId(userId);
 	}
     
+	/**
+	 * Creates a new row in the Imagemetadata table
+	 * @param imageMetadata
+	 * @return
+	 */
 	@PostMapping("/imagemetadata")
-    public ImageMetadata createMentor(@Valid @RequestBody ImageMetadata imageMetadata) 
+    public ImageMetadata createImageMetadata(@Valid @RequestBody ImageMetadata imageMetadata) 
 	{	
+        return imageMetadataRepository.save(imageMetadata);
+    }
+	
+	/**
+	 * Updates the image metadata's caption and description
+	 * 
+	 * @param id
+	 * @param caption
+	 * @param description
+	 * @return
+	 */
+	@PostMapping("/imagemetadata/update")
+    public ImageMetadata updateImageMetadata(@Valid @RequestParam(value = "filename") String filename, @RequestParam(value = "caption") String caption, @RequestParam(value = "description") String description) 
+	{	
+		ImageMetadata imageMetadata = imageMetadataRepository.findByFilename(filename);
+		imageMetadata.setCaption(caption);
+		imageMetadata.setDescription(description);
         return imageMetadataRepository.save(imageMetadata);
     }
 }
