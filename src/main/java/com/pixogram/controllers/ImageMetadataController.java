@@ -40,7 +40,7 @@ public class ImageMetadataController
 	 * @param userId
 	 * @return
 	 */
-    @GetMapping("/imagemetadata/")
+    @GetMapping("/imagemetadata/{id}")
     public ImageMetadata getImageById(@RequestParam(value = "id") Integer userId) 
     {
         return imageMetadataRepository.findById(userId)
@@ -53,7 +53,7 @@ public class ImageMetadataController
 	 * @return
 	 */
 	@GetMapping("/imagemetadata/{userId}")
-	public List<ImageMetadata> getTechByTechName(@RequestParam(value = "userId") Integer userId)
+	public List<ImageMetadata> getImageByUserId(@RequestParam(value = "userId") Integer userId)
 	{
 		return imageMetadataRepository.findByUserId(userId);
 	}

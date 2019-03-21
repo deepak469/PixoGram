@@ -50,6 +50,11 @@ public class ImageMetadata
         this.description = description;
     }
     
+    public Integer getId()
+    {
+    	return this.id;
+    }
+    
     public void setUserId(Integer inputUserId)
     {
     	this.userId = inputUserId;
