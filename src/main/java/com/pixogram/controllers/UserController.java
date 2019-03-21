@@ -137,4 +137,18 @@ public class UserController
 	{
 		return userRepository.getUsersByName(name);
 	}
+	
+	/**
+	 * Blocks a user or mentor
+	 * @param userId
+	 */
+	@PutMapping("/user/updateprofilepic/")
+	public User updateProfilePic(@RequestParam(value = "profilePicUri") String profilePicUri, @RequestParam(value = "id") int id)
+	{
+		User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+		user.setProfilePicUri(profilePicUri);
+		
+		User updatedUser = userRepository.save(user);
+		return updatedUser;
+	}
 }

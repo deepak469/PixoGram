@@ -36,4 +36,8 @@ public interface UserRepository extends JpaRepository<User, Integer>
     @Query(value = "SELECT * from users WHERE name LIKE CONCAT('%',:name,'%')",
     		nativeQuery = true)
     public List<User> getUsersByName(@Param("name") String name);
+    
+    @Query(value = "UPDATE users SET profile_pic_uri = :profilePicUri WHERE id = :id",
+	nativeQuery = true)
+	public List<User> updateProfilePic(@Param("profilePicUri") String profilePicUri, @Param("id") String id);
 }
