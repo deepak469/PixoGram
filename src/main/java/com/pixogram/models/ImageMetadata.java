@@ -38,6 +38,9 @@ public class ImageMetadata
     @Column(name="description")
     private String description;
     
+    @Column(name="likes")
+    private Integer likes;
+    
     public ImageMetadata() {}
  
     public ImageMetadata(Integer userId, String filename, String filetype, String size, String caption, String description) 
@@ -113,5 +116,15 @@ public class ImageMetadata
     public String getDescription()
     {
     	return this.description;
+    }
+    
+    public void setLikes(Integer inputLikes)
+    {
+    	this.likes = inputLikes;
+    }
+    
+    public Integer getLikes()
+    {
+    	return this.likes;
     }
 }

@@ -85,4 +85,16 @@ public class ImageMetadataController
 		imageMetadata.setDescription(description);
         return imageMetadataRepository.save(imageMetadata);
     }
+	
+	/**
+	 * Add like to picture
+	 * @return
+	 */
+	@PostMapping("/imagemetadata/like")
+    public ImageMetadata addLikeToImage(@Valid @RequestParam(value = "filename") String filename) 
+	{	
+		ImageMetadata imageMetadata = imageMetadataRepository.findByFilename(filename);
+		imageMetadata.setLikes(imageMetadata.getLikes() + 1);
+        return imageMetadataRepository.save(imageMetadata);
+    }
 }
