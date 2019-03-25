@@ -41,8 +41,19 @@ public class FriendController {
 	 * @return
 	 */
 	@PostMapping("/friends")
-    public Friends createImageMetadata(@Valid @RequestBody Friends friends) 
+    public Friends createFriend(@Valid @RequestBody Friends friends) 
 	{	
         return friendRepository.save(friends);
+    }
+	
+	/**
+	 * Deletes a new row in the Friends table
+	 * @param imageMetadata
+	 * @return
+	 */
+	@PostMapping("/friends/delete/")
+    public void deleteFriend(@Valid @RequestParam int userid, @RequestParam int friendid) 
+	{	
+        friendRepository.deleteFriendByUserIdFriendIf(userid, friendid);
     }
 }
