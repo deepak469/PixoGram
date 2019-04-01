@@ -55,4 +55,15 @@ public class ImageCommentsController
 	{	
         return imageCommentsRepository.save(imageComments);
     }
+	
+	/**
+	 * Get count of comments for news feed
+	 * @param userId
+	 * @return
+	 */
+	@GetMapping("/imagecomments/recentcommentcount/")
+	public List<ImageComments> getCountOfComment(@RequestParam(value = "userid") int userid)
+	{
+		return imageCommentsRepository.getRecentImageCommments(userid);
+	}
 }

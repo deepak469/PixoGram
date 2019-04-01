@@ -1,10 +1,13 @@
 package com.pixogram.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +25,9 @@ public class ImageMetadata
  
     @Column(name = "userId")
     private Integer userId;
+    
+    @Column(name = "username")
+    private String username;
  
     @Column(name = "filename")
     private String filename;
@@ -35,22 +41,22 @@ public class ImageMetadata
     @Column(name="caption")
     private String caption;
     
-    @Column(name="description")
-    private String description;
-    
     @Column(name="likes")
     private Integer likes;
     
+    @Column(name = "createdAt")
+    private Date createdAt;
+    
     public ImageMetadata() {}
  
-    public ImageMetadata(Integer userId, String filename, String filetype, String size, String caption, String description) 
+    public ImageMetadata(Integer userId, String username, String filename, String filetype, String size, String caption) 
     {
         this.userId = userId;
+        this.username= username;
         this.filename = filename;
         this.filetype = filetype;
         this.size = size;
         this.caption = caption;
-        this.description = description;
     }
     
     public Integer getId()
@@ -66,6 +72,16 @@ public class ImageMetadata
     public Integer getUserId()
     {
     	return this.userId;
+    }
+    
+    public void setUsername(String inputUsername)
+    {
+    	this.username = inputUsername;
+    }
+    
+    public String getUsername()
+    {
+    	return this.username;
     }
     
     public void setFilename(String inputFilename)
@@ -108,16 +124,6 @@ public class ImageMetadata
     	return this.caption;
     }
     
-    public void setDescription(String inputDescription)
-    {
-    	this.description = inputDescription;
-    }
-    
-    public String getDescription()
-    {
-    	return this.description;
-    }
-    
     public void setLikes(Integer inputLikes)
     {
     	this.likes = inputLikes;
@@ -126,5 +132,16 @@ public class ImageMetadata
     public Integer getLikes()
     {
     	return this.likes;
+    }
+    
+    @PrePersist
+    public void setCreatedAt() 
+    {
+      this.createdAt = new Date();
+    } 
+    
+    public Date getCreatedAt()
+    {
+    	return this.createdAt;
     }
 }

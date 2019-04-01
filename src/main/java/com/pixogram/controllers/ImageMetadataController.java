@@ -82,7 +82,6 @@ public class ImageMetadataController
 	{	
 		ImageMetadata imageMetadata = imageMetadataRepository.findByFilename(filename);
 		imageMetadata.setCaption(caption);
-		imageMetadata.setDescription(description);
         return imageMetadataRepository.save(imageMetadata);
     }
 	
@@ -97,4 +96,15 @@ public class ImageMetadataController
 		imageMetadata.setLikes(imageMetadata.getLikes() + 1);
         return imageMetadataRepository.save(imageMetadata);
     }
+	
+	/**
+	 * Get count of image uploads for news feed
+	 * @param userId
+	 * @return
+	 */
+	@GetMapping("/imagemetadata/recentuploadcount/")
+	public List<ImageMetadata> getCountOfImageUploads(@RequestParam(value = "userid") int userid)
+	{
+		return imageMetadataRepository.getRecentImageUploads(userid);
+	}
 }

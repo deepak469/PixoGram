@@ -1,10 +1,13 @@
 package com.pixogram.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +26,12 @@ public class ImageComments
 	
 	@Column
 	private String comment;
+	
+	@Column
+	private int userId;
+	
+	@Column(name = "createdAt")
+    private Date createdAt;
 	
 	public void setFilename(String inputFilename)
 	{
@@ -53,4 +62,25 @@ public class ImageComments
 	{
 		return this.comment;
 	}
+	
+	public void setUserId(int inputUserId)
+	{
+		this.userId = inputUserId;
+	}
+	
+	public int getUserId()
+	{
+		return this.userId;
+	}
+	
+    @PrePersist
+    public void setCreatedAt() 
+    {
+      this.createdAt = new Date();
+    } 
+    
+    public Date getCreatedAt()
+    {
+    	return this.createdAt;
+    }
 }
