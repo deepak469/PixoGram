@@ -78,7 +78,7 @@ public class ImageMetadataController
 	 * @return
 	 */
 	@PostMapping("/imagemetadata/update")
-    public ImageMetadata updateImageMetadata(@Valid @RequestParam(value = "filename") String filename, @RequestParam(value = "caption") String caption, @RequestParam(value = "description") String description) 
+    public ImageMetadata updateImageMetadata(@Valid @RequestParam(value = "filename") String filename, @RequestParam(value = "caption") String caption) 
 	{	
 		ImageMetadata imageMetadata = imageMetadataRepository.findByFilename(filename);
 		imageMetadata.setCaption(caption);
